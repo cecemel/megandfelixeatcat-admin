@@ -16,7 +16,6 @@ export default Model.extend({
   rdfaBindings: Object.freeze({
     class: "schema:FoodEstablishment",
     establishmentName: "schema:name",
-    ratings: "schema:starRating",
-    reviews: "schema:review"
+    ratings: "schema:starRating"
   })
 });
