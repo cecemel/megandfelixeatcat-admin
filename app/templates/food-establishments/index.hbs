@@ -1,0 +1,29 @@
+{{!-- Page to list food-establishments --}}
+<div class="content">
+  <h2 class="h2">{{show-models-link}} &lt; {{t (humanize 'food-establishments')}}</h2>
+  {{#data-table
+     content=model
+     isLoading=isLoadingModel
+     filter=filter
+     sort=sort
+     page=page
+     size=size
+     as |table|}}
+    {{#table.content as |c|}}
+      {{#c.header}}
+        {{th-sortable field='establishmentName' currentSorting=sort label=(t 'establishmentName')}}
+        
+        <th>{{!-- contains detail view action --}}</th>
+        <th>{{!-- contains detail edit action --}}</th>
+      {{/c.header}}
+      {{#c.body as |row|}}
+        {{#with-rdfa-context tagName="td" model=row as |ctx|}}{{ctx.get prop="establishmentName"}}{{/with-rdfa-context}}
+                
+                {{#with-rdfa-context tagName="td" model=row as |ctx|}}{{#rdfa/link-to link-to='food-establishments.show' value=row property="foaf:page"}}{{t "Open"}}{{/rdfa/link-to}}{{/with-rdfa-context}}
+        <td>{{link-to (t 'Edit') 'food-establishments.edit' row}}</td>
+      {{/c.body}}
+    {{/table.content}}
+  {{/data-table}}
+
+  <div class="actions">{{#link-to "food-establishments.new" class="button" title=(t "Create new food-establishment") tagName="button" }}{{t 'Create new food-establishment'}}{{/link-to}}</div>
+</div>

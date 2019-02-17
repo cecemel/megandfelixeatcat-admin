@@ -1,0 +1,38 @@
+{{!-- Page to edit food-establishment --}}
+{{#with (changeset model skipValidate=true) as |changeset|}}
+<div class="edit">
+  <h2 class="title">{{t (humanize 'Edit food-establishment')}}</h2>
+
+  {{!--
+    Actions to save or cancel changes;
+    or delete food-establishment.
+  --}}
+  <div class="actions">
+    <button type="button" class="btn save" title="Save new food-establishment" {{action 'save' changeset model}}>Save</button>
+    <button type="button" class="btn cancel" title="Cancel" {{action 'cancel' changeset model}}>Cancel</button>
+    <button type="button" class="btn delete" title="Delete this item" {{action 'delete' changeset model}}>Delete</button>
+  </div>
+
+  {{!-- Table to show details of food-establishment. --}}
+  <table>
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{!-- Creating rows for attributes depending on the type of property --}}
+            <tr>
+      <td>establishmentName</td>
+      <td align='middle'>{{handle-attribute model=changeset attribute='establishmentName' editable=true}}</td>
+</tr>
+
+        
+        <tr><td>ratings</td><td align='middle'>{{edit-has-many relName=changeset.ratings relType="rating"}}</td></tr>
+      <tr><td>reviews</td><td align='middle'>{{edit-has-many relName=changeset.reviews relType="review"}}</td></tr>
+
+    </tbody>
+  </table>
+</div>
+{{/with}}

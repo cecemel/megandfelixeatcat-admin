@@ -1,0 +1,33 @@
+{{!-- Page to create a new food-establishment --}}
+<div class="new">
+  <h2 class="title">{{t (humanize 'New food-establishment')}}</h2>
+
+  {{!--
+    Actions to save new food-establishment
+    or delete new food-establishment.
+  --}}
+  <div class="actions">
+    <button type="button" class="btn save" title="Save new food-establishment" {{action 'save' model}}>Save</button>
+    <button type="button" class="btn cancel" title="Cancel" {{action 'cancel' model}}>Cancel</button>
+  </div>
+
+  {{!-- Table to show details of food-establishment. --}}
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{!-- Creating rows for attributes depending on the type of property --}}
+            <tr>
+        <td>establishmentName</td>
+<td align='middle'>{{handle-attribute model=model attribute='establishmentName' editable=true}}</td>
+      </tr>
+      
+      <tr><td>ratings</td><td align='middle'>{{edit-has-many relName=model.ratings relType="rating"}}</td></tr>
+      <tr><td>reviews</td><td align='middle'>{{edit-has-many relName=model.reviews relType="review"}}</td></tr>
+    </tbody>
+  </table>
+</div>

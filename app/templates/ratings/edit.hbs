@@ -1,0 +1,49 @@
+{{!-- Page to edit rating --}}
+{{#with (changeset model skipValidate=true) as |changeset|}}
+<div class="edit">
+  <h2 class="title">{{t (humanize 'Edit rating')}}</h2>
+
+  {{!--
+    Actions to save or cancel changes;
+    or delete rating.
+  --}}
+  <div class="actions">
+    <button type="button" class="btn save" title="Save new rating" {{action 'save' changeset model}}>Save</button>
+    <button type="button" class="btn cancel" title="Cancel" {{action 'cancel' changeset model}}>Cancel</button>
+    <button type="button" class="btn delete" title="Delete this item" {{action 'delete' changeset model}}>Delete</button>
+  </div>
+
+  {{!-- Table to show details of rating. --}}
+  <table>
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{!-- Creating rows for attributes depending on the type of property --}}
+            <tr>
+      <td>ratingValue</td>
+      <td align='middle'>{{handle-attribute model=changeset attribute='ratingValue' editable=true}}</td>
+</tr>
+      <tr>
+      <td>veggieScore</td>
+      <td align='middle'>{{handle-attribute model=changeset attribute='veggieScore' editable=true}}</td>
+</tr>
+      <tr>
+      <td>priceQuality</td>
+      <td align='middle'>{{handle-attribute model=changeset attribute='priceQuality' editable=true}}</td>
+</tr>
+      <tr>
+      <td>created</td>
+      <td align='middle'>{{handle-date model=changeset attribute='created' editable=true}}</td>
+</tr>
+
+        <tr><td>review</td><td align='middle'>{{edit-belongs-to relName=changeset.review relType="review"}}</td></tr>
+        
+
+    </tbody>
+  </table>
+</div>
+{{/with}}

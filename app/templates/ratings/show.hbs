@@ -1,0 +1,30 @@
+{{!-- Page to show details of ratings --}}
+{{#with-rdfa-context class="container" model=model as |ctx|}}
+  <div class="page">
+    <h2 class="h2">{{link-to (t "rating overview") "ratings.index"}} &lt; {{t (humanize 'rating details')}}</h2>
+    <div class="properties">
+      <div class="properties__title">
+        {{t (humanize 'rating data')}}
+        <dl>
+          <dt class="properties__label">URI</dt>
+          <dd class="properties__data">{{#link-to "ratings.show" model href=model.uri}}{{model.uri}}{{/link-to}}</dd>
+          <dt class="properties__label">{{t "ratingValue"}}</dt> <dd class="properties__data">{{ctx.get prop="ratingValue"}}</dd>
+<dt class="properties__label">{{t "veggieScore"}}</dt> <dd class="properties__data">{{ctx.get prop="veggieScore"}}</dd>
+<dt class="properties__label">{{t "priceQuality"}}</dt> <dd class="properties__data">{{ctx.get prop="priceQuality"}}</dd>
+<dt class="properties__label">{{t "created"}}</dt> <dd class="properties__data">{{ctx.get prop="created"}}</dd>
+          <dt class="properties__label">{{t "review"}}</dt>
+          <dd class="properties__data">{{#ctx.get prop="review" useUri=true link-to="reviews.show" as |ctx val|}}{{val.stringRep}}{{/ctx.get}}</dd>
+          
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Actions to go back to the list-view or edit rating if it's an editable application. --}}
+  <div class="actions">
+    <div class="button-group">
+      {{#link-to "ratings" class="button" title="Return to list" tagName='button'}}{{t "< Return to the list"}}{{/link-to}}
+      {{#link-to "ratings.edit" model class="button" title=(t (humanize "Edit this rating")) tagName="button"}}{{t 'edit'}}{{/link-to}}
+    </div>
+  </div>
+{{/with-rdfa-context}}

@@ -1,0 +1,39 @@
+{{!-- Page to list reviews --}}
+<div class="content">
+  <h2 class="h2">{{show-models-link}} &lt; {{t (humanize 'reviews')}}</h2>
+  {{#data-table
+     content=model
+     isLoading=isLoadingModel
+     filter=filter
+     sort=sort
+     page=page
+     size=size
+     as |table|}}
+    {{#table.content as |c|}}
+      {{#c.header}}
+        {{th-sortable field='reviewBody' currentSorting=sort label=(t 'reviewBody')}}
+{{th-sortable field='headline' currentSorting=sort label=(t 'headline')}}
+{{th-sortable field='created' currentSorting=sort label=(t 'created')}}
+        {{th-sortable field='rating' currentSorting=sort label=(t 'rating')}}
+{{th-sortable field='foodEstablishment' currentSorting=sort label=(t 'foodEstablishment')}}
+        <th>{{!-- contains detail view action --}}</th>
+        <th>{{!-- contains detail edit action --}}</th>
+      {{/c.header}}
+      {{#c.body as |row|}}
+        {{#with-rdfa-context tagName="td" model=row as |ctx|}}{{ctx.get prop="reviewBody"}}{{/with-rdfa-context}}
+{{#with-rdfa-context tagName="td" model=row as |ctx|}}{{ctx.get prop="headline"}}{{/with-rdfa-context}}
+{{#with-rdfa-context tagName="td" model=row as |ctx|}}{{ctx.get prop="created"}}{{/with-rdfa-context}}
+                {{#with-rdfa-context tagName="td" model=row as |ctx|}}
+                  {{#ctx.get prop="rating" useUri=true link-to="ratings.show" as |ctx val|}}{{val.stringRep}}{{/ctx.get}}
+                {{/with-rdfa-context}}
+{{#with-rdfa-context tagName="td" model=row as |ctx|}}
+                  {{#ctx.get prop="foodEstablishment" useUri=true link-to="food-establishments.show" as |ctx val|}}{{val.stringRep}}{{/ctx.get}}
+                {{/with-rdfa-context}}
+                {{#with-rdfa-context tagName="td" model=row as |ctx|}}{{#rdfa/link-to link-to='reviews.show' value=row property="foaf:page"}}{{t "Open"}}{{/rdfa/link-to}}{{/with-rdfa-context}}
+        <td>{{link-to (t 'Edit') 'reviews.edit' row}}</td>
+      {{/c.body}}
+    {{/table.content}}
+  {{/data-table}}
+
+  <div class="actions">{{#link-to "reviews.new" class="button" title=(t "Create new review") tagName="button" }}{{t 'Create new review'}}{{/link-to}}</div>
+</div>
