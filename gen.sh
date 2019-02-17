@@ -1,8 +1,11 @@
-edi ember install ember-power-select
-edi ember install ember-changeset
-edi ember install ember-datetimepicker
-edi ember install https://github.com/mu-semtech/ember-mu-application-generator.git#oslo2
-edi ember generate ember-mu-application-generator
+edi ember install ember-power-select;
+edi ember install ember-changesetl
+edi ember install ember-datetimepicker;
+edi ember install https://github.com/mu-semtech/ember-mu-application-generator.git#oslo2;
+edi ember generate ember-mu-application-generator;
+edi ember install ember-data-table;
+edi ember install ember-cli-sass;
+edi ember generate mu-application-design;
 edi ember g mu-resource "food-establishment&schema:FoodEstablishment" "establishment-name:string&schema:name" "ratings:has-many:rating&schema:starRating" "reviews:has-many:review&schema:review"
 edi ember g mu-resource "rating&schema:Rating" "rating-value:number&schema:ratingValue" "veggie-score:number&meg:veggieScore" "price-quality:number&meg:priceQuality" "created:date&dct:created" "review:belongs-to:review~rating"
 edi ember g mu-resource "reviewer&schema:Person" "family-name:string&schema:familyName" "firstname:string&schema:name"
