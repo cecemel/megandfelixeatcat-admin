@@ -30,14 +30,11 @@
 <td align='middle'>{{handle-attribute model=model attribute='veggieScore' editable=true}}</td>
       </tr>
       <tr>
-        <td>priceQuality</td>
-<td align='middle'>{{handle-attribute model=model attribute='priceQuality' editable=true}}</td>
-      </tr>
-      <tr>
         <td>created</td>
 <td align='middle'>{{handle-date model=model attribute='created' editable=true}}</td>
       </tr>
       <tr><td>review</td><td align='middle'>{{edit-belongs-to relName=model.review relType="review"}}</td></tr>
+      <tr><td>foodEstablishment</td><td align='middle'>{{edit-belongs-to relName=model.foodEstablishment relType="food-establishment"}}</td></tr>
       
     </tbody>
   </table>
