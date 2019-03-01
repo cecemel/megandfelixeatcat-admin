@@ -1,0 +1,40 @@
+{{!-- Page to create a new aggregate-rating --}}
+<div class="new">
+  <h2 class="title">{{t (humanize 'New aggregate-rating')}}</h2>
+
+  {{!--
+    Actions to save new aggregate-rating
+    or delete new aggregate-rating.
+  --}}
+  <div class="actions">
+    <button type="button" class="btn save" title="Save new aggregate-rating" {{action 'save' model}}>Save</button>
+    <button type="button" class="btn cancel" title="Cancel" {{action 'cancel' model}}>Cancel</button>
+  </div>
+
+  {{!-- Table to show details of aggregate-rating. --}}
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{!-- Creating rows for attributes depending on the type of property --}}
+            <tr>
+        <td>ratingValue</td>
+<td align='middle'>{{handle-attribute model=model attribute='ratingValue' editable=true}}</td>
+      </tr>
+      <tr>
+        <td>avgVeggieScore</td>
+<td align='middle'>{{handle-attribute model=model attribute='avgVeggieScore' editable=true}}</td>
+      </tr>
+      <tr>
+        <td>count</td>
+<td align='middle'>{{handle-attribute model=model attribute='count' editable=true}}</td>
+      </tr>
+      <tr><td>foodEstablishment</td><td align='middle'>{{edit-belongs-to relName=model.foodEstablishment relType="food-establishment"}}</td></tr>
+      
+    </tbody>
+  </table>
+</div>

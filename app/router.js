@@ -62,6 +62,45 @@ Router.map(function() {
       path: ':id/edit'
     });
   });
+
+  this.route('aggregate-ratings', {
+    path: '/doc/aggregate-ratings/'
+  }, function() {
+    this.route('show', {
+      path: ':id'
+    });
+    this.route('new');
+
+    this.route('edit', {
+      path: ':id/edit'
+    });
+  });
+
+  this.route('postal-addresses', {
+    path: '/doc/postal-addresses/'
+  }, function() {
+    this.route('show', {
+      path: ':id'
+    });
+    this.route('new');
+
+    this.route('edit', {
+      path: ':id/edit'
+    });
+  });
+
+  this.route('files', {
+    path: '/doc/files/'
+  }, function() {
+    this.route('show', {
+      path: ':id'
+    });
+    this.route('new');
+
+    this.route('edit', {
+      path: ':id/edit'
+    });
+  });
 });
 
 export default Router;

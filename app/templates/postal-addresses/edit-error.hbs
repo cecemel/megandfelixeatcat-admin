@@ -1,0 +1,8 @@
+<div class="u-padding--round--large">
+  {{#wu-alert isError=true title=(t "Unexpected error")}}
+    <p>{{t "Something went wrong. Try again later."}}</p>
+    <code>
+      {{model}}
+    </code>
+  {{/wu-alert}}
+</div>

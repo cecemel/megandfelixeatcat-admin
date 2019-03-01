@@ -1,0 +1,40 @@
+{{!-- Page to create a new postal-address --}}
+<div class="new">
+  <h2 class="title">{{t (humanize 'New postal-address')}}</h2>
+
+  {{!--
+    Actions to save new postal-address
+    or delete new postal-address.
+  --}}
+  <div class="actions">
+    <button type="button" class="btn save" title="Save new postal-address" {{action 'save' model}}>Save</button>
+    <button type="button" class="btn cancel" title="Cancel" {{action 'cancel' model}}>Cancel</button>
+  </div>
+
+  {{!-- Table to show details of postal-address. --}}
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{!-- Creating rows for attributes depending on the type of property --}}
+            <tr>
+        <td>country</td>
+<td align='middle'>{{handle-attribute model=model attribute='country' editable=true}}</td>
+      </tr>
+      <tr>
+        <td>region</td>
+<td align='middle'>{{handle-attribute model=model attribute='region' editable=true}}</td>
+      </tr>
+      <tr>
+        <td>postalCode</td>
+<td align='middle'>{{handle-attribute model=model attribute='postalCode' editable=true}}</td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+</div>

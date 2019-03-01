@@ -1,0 +1,31 @@
+{{!-- Page to show details of files --}}
+{{#with-rdfa-context class="container" model=model as |ctx|}}
+  <div class="page">
+    <h2 class="h2">{{link-to (t "file overview") "files.index"}} &lt; {{t (humanize 'file details')}}</h2>
+    <div class="properties">
+      <div class="properties__title">
+        {{t (humanize 'file data')}}
+        <dl>
+          <dt class="properties__label">URI</dt>
+          <dd class="properties__data">{{#link-to "files.show" model href=model.uri}}{{model.uri}}{{/link-to}}</dd>
+          <dt class="properties__label">{{t "filename"}}</dt> <dd class="properties__data">{{ctx.get prop="filename"}}</dd>
+<dt class="properties__label">{{t "format"}}</dt> <dd class="properties__data">{{ctx.get prop="format"}}</dd>
+<dt class="properties__label">{{t "size"}}</dt> <dd class="properties__data">{{ctx.get prop="size"}}</dd>
+<dt class="properties__label">{{t "extension"}}</dt> <dd class="properties__data">{{ctx.get prop="extension"}}</dd>
+<dt class="properties__label">{{t "created"}}</dt> <dd class="properties__data">{{ctx.get prop="created"}}</dd>
+          <dt class="properties__label">{{t "download"}}</dt>
+          <dd class="properties__data">{{#ctx.get prop="download" useUri=true link-to="files.show" as |ctx val|}}{{val.stringRep}}{{/ctx.get}}</dd>
+          
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Actions to go back to the list-view or edit file if it's an editable application. --}}
+  <div class="actions">
+    <div class="button-group">
+      {{#link-to "files" class="button" title="Return to list" tagName='button'}}{{t "< Return to the list"}}{{/link-to}}
+      {{#link-to "files.edit" model class="button" title=(t (humanize "Edit this file")) tagName="button"}}{{t 'edit'}}{{/link-to}}
+    </div>
+  </div>
+{{/with-rdfa-context}}

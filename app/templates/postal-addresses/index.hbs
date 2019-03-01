@@ -1,0 +1,33 @@
+{{!-- Page to list postal-addresses --}}
+<div class="content">
+  <h2 class="h2">{{show-models-link}} &lt; {{t (humanize 'postal-addresses')}}</h2>
+  {{#data-table
+     content=model
+     isLoading=isLoadingModel
+     filter=filter
+     sort=sort
+     page=page
+     size=size
+     as |table|}}
+    {{#table.content as |c|}}
+      {{#c.header}}
+        {{th-sortable field='country' currentSorting=sort label=(t 'country')}}
+{{th-sortable field='region' currentSorting=sort label=(t 'region')}}
+{{th-sortable field='postalCode' currentSorting=sort label=(t 'postalCode')}}
+        
+        <th>{{!-- contains detail view action --}}</th>
+        <th>{{!-- contains detail edit action --}}</th>
+      {{/c.header}}
+      {{#c.body as |row|}}
+        {{#with-rdfa-context tagName="td" model=row as |ctx|}}{{ctx.get prop="country"}}{{/with-rdfa-context}}
+{{#with-rdfa-context tagName="td" model=row as |ctx|}}{{ctx.get prop="region"}}{{/with-rdfa-context}}
+{{#with-rdfa-context tagName="td" model=row as |ctx|}}{{ctx.get prop="postalCode"}}{{/with-rdfa-context}}
+                
+                {{#with-rdfa-context tagName="td" model=row as |ctx|}}{{#rdfa/link-to link-to='postal-addresses.show' value=row property="foaf:page"}}{{t "Open"}}{{/rdfa/link-to}}{{/with-rdfa-context}}
+        <td>{{link-to (t 'Edit') 'postal-addresses.edit' row}}</td>
+      {{/c.body}}
+    {{/table.content}}
+  {{/data-table}}
+
+  <div class="actions">{{#link-to "postal-addresses.new" class="button" title=(t "Create new postal-address") tagName="button" }}{{t 'Create new postal-address'}}{{/link-to}}</div>
+</div>

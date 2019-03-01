@@ -1,0 +1,28 @@
+{{!-- Page to show details of postal-addresses --}}
+{{#with-rdfa-context class="container" model=model as |ctx|}}
+  <div class="page">
+    <h2 class="h2">{{link-to (t "postal-address overview") "postal-addresses.index"}} &lt; {{t (humanize 'postal-address details')}}</h2>
+    <div class="properties">
+      <div class="properties__title">
+        {{t (humanize 'postal-address data')}}
+        <dl>
+          <dt class="properties__label">URI</dt>
+          <dd class="properties__data">{{#link-to "postal-addresses.show" model href=model.uri}}{{model.uri}}{{/link-to}}</dd>
+          <dt class="properties__label">{{t "country"}}</dt> <dd class="properties__data">{{ctx.get prop="country"}}</dd>
+<dt class="properties__label">{{t "region"}}</dt> <dd class="properties__data">{{ctx.get prop="region"}}</dd>
+<dt class="properties__label">{{t "postalCode"}}</dt> <dd class="properties__data">{{ctx.get prop="postalCode"}}</dd>
+          
+          
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Actions to go back to the list-view or edit postal-address if it's an editable application. --}}
+  <div class="actions">
+    <div class="button-group">
+      {{#link-to "postal-addresses" class="button" title="Return to list" tagName='button'}}{{t "< Return to the list"}}{{/link-to}}
+      {{#link-to "postal-addresses.edit" model class="button" title=(t (humanize "Edit this postal-address")) tagName="button"}}{{t 'edit'}}{{/link-to}}
+    </div>
+  </div>
+{{/with-rdfa-context}}

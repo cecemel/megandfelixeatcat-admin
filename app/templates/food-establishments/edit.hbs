@@ -27,10 +27,16 @@
       <td>establishmentName</td>
       <td align='middle'>{{handle-attribute model=changeset attribute='establishmentName' editable=true}}</td>
 </tr>
+      <tr>
+      <td>website</td>
+      <td align='middle'>{{handle-attribute model=changeset attribute='website' editable=true}}</td>
+</tr>
 
-        
+        <tr><td>aggregateRating</td><td align='middle'>{{edit-belongs-to relName=changeset.aggregateRating relType="aggregate-rating"}}</td></tr>
+      <tr><td>address</td><td align='middle'>{{edit-belongs-to relName=changeset.address relType="postal-address"}}</td></tr>
         <tr><td>ratings</td><td align='middle'>{{edit-has-many relName=changeset.ratings relType="rating"}}</td></tr>
       <tr><td>reviews</td><td align='middle'>{{edit-has-many relName=changeset.reviews relType="review"}}</td></tr>
+      <tr><td>photos</td><td align='middle'>{{edit-has-many relName=changeset.photos relType="file"}}</td></tr>
 
     </tbody>
   </table>
